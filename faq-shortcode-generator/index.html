@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ Shortcode Generator for Lightweight Accordion | Trisha Cupra</title>
+
+  <meta name="description" content="Generate clean FAQ shortcode blocks for the Lightweight Accordion WordPress plugin, including optional FAQ schema markup and cleaned rich text formatting.">
+
+  <meta name="keywords" content="FAQ shortcode generator, Lightweight Accordion, WordPress FAQ plugin, FAQ schema generator, shortcode tool, WordPress accordion FAQ">
+
+  <meta name="author" content="Trisha Cupra">
+
+  <meta property="og:title" content="FAQ Shortcode Generator for Lightweight Accordion">
+  <meta property="og:description" content="Generate clean FAQ shortcode blocks for WordPress with optional FAQ schema markup and cleaned formatting.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.tcupra.com/faq-shortcode-generator/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ Shortcode Generator for Lightweight Accordion">
+  <meta name="twitter:description" content="Generate clean FAQ shortcode blocks for WordPress with optional FAQ schema markup.">
+
+  <link rel="canonical" href="https://tools.tcupra.com/faq-shortcode-generator/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --border: #d8dee4;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --accent: #6b8fa0;
+      --accent-dark: #557786;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 48px 24px;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at top left, rgba(107, 143, 160, 0.08), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(85, 119, 134, 0.06), transparent 24%);
+      color: var(--text);
+      font-family:
+        "Montserrat",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 72px;
+      padding-right: 72px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        max-width: 760px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100%;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .container {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .card {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .actions {
+        padding: 16px;
+        margin-top: 24px;
+        margin-bottom: 28px;
+      }
+    }
+
+    h1 {
+      padding-top: 24px;
+      margin: 0 0 12px;
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin: 28px 0 12px;
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 0 32px;
+      font-size: 1.02rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 16px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    input[type="text"],
+    select,
+    textarea,
+    .rich-editor {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+      background: white;
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .rich-editor {
+      min-height: 220px;
+      padding: 14px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .rich-editor:focus {
+      outline: 2px solid rgba(107, 143, 160, 0.25);
+      border-color: var(--accent);
+    }
+
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 10px;
+      background: #f7f9fb;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 10px;
+    }
+
+    .editor-toolbar button {
+      user-select: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: white;
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .editor-toolbar button:hover {
+      background: #eef4f7;
+      color: var(--accent-dark);
+      transform: none;
+      box-shadow: none;
+    }
+
+    .faq-card h2 {
+      margin: 0 0 18px;
+      font-size: 1.1rem;
+    }
+
+    .faq-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .faq-controls button {
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      border-radius: 10px;
+    }
+
+    .faq-controls .move-btn {
+      min-width: 44px;
+      padding: 10px 12px;
+      font-weight: 700;
+    }
+
+    .faq-controls .delete-faq-btn {
+      margin-left: auto;
+      background: #fff4f4;
+      color: #a94444;
+      border: 1px solid rgba(169, 68, 68, 0.15);
+    }
+
+    .faq-controls .delete-faq-btn:hover {
+      background: #ffeaea;
+      color: #8f2d2d;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 14px;
+      backdrop-filter: blur(6px);
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      background: var(--accent);
+      color: white;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    button.secondary {
+      background: #eef2f5;
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .output {
+      min-height: 320px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92rem;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .validation-error {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #fff1f1;
+      border: 1px solid #efc7c7;
+      color: #9f2f2f;
+      border-radius: 10px;
+      font-size: 0.94rem;
+      display: none;
+    }
+
+    .question-error {
+      border-color: #d96b6b !important;
+      background: #fff9f9 !important;
+    }
+
+    .site-footer {
+      margin-top: 48px;
+      padding: 24px 0 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .site-footer p {
+      margin: 0 0 10px;
+    }
+
+    .site-footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>FAQ shortcode generator</h1>
+
+    <p class="intro">
+      This free tool helps generate clean shortcode blocks for the <strong>Lightweight Accordion</strong> WordPress plugin, including optional FAQ schema markup for SEO-friendly FAQ sections.
+    </p>
+
+    <div class="card">
+      <h2>Generate FAQ shortcode for WordPress</h2>
+
+      <p>
+        Writing large FAQ sections directly as shortcode can become repetitive, fiddly, and error-prone, especially when dealing with multiple FAQ items, grouped accordions, schema markup, and quote or encoding issues.
+      </p>
+
+      <p>
+        This utility generates properly formatted shortcode blocks for:
+      </p>
+
+      <p>
+        <a href="https://wordpress.org/plugins/lightweight-accordion/" target="_blank" rel="noopener noreferrer">
+          Lightweight Accordion for WordPress
+        </a>
+      </p>
+
+      <h3>How it works</h3>
+
+      <ol>
+        <li>Add your FAQ questions and answers</li>
+        <li>Choose your shortcode options</li>
+        <li>Click <strong>Generate shortcode</strong></li>
+        <li>Copy the generated output</li>
+        <li>Paste it into the WordPress Classic Editor</li>
+      </ol>
+
+      <p class="muted">
+        The tool automatically normalises common quote and encoding issues in the background to help prevent broken shortcode output.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Options</h2>
+
+      <div class="options-row">
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="includeSchema" checked>
+          Add FAQ schema
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="includeGroup" checked>
+          Auto-close other FAQs in the same group
+        </label>
+
+        <label>
+          Group name
+          <input type="text" id="groupName" value="faq">
+        </label>
+
+        <label>
+          Heading tag
+          <select id="headingTag">
+            <option value="h3" selected>H3</option>
+            <option value="h2">H2</option>
+            <option value="h4">H4</option>
+            <option value="">Default</option>
+          </select>
+        </label>
+
+      </div>
+    </div>
+
+    <div id="faqContainer"></div>
+
+    <div id="validationError" class="validation-error"></div>
+
+    <div class="actions">
+      <button type="button" class="secondary" id="addFaqBtn">Add another FAQ</button>
+      <button type="button" id="generateBtn">Generate shortcode</button>
+      <button type="button" class="secondary" id="copyBtn">Copy output</button>
+    </div>
+
+    <div class="card">
+      <h2>Generated FAQ shortcode</h2>
+      <textarea id="output" class="output" readonly></textarea>
+    </div>
+
+      <footer class="site-footer">
+      <p>
+        Built for WordPress users who are tired of wrestling with shortcode formatting.
+      </p>
+
+      <p>
+        Last updated: 19 May 2026
+      </p>
+
+      <p>
+        Works with
+        <a href="https://wordpress.org/plugins/lightweight-accordion/" target="_blank" rel="noopener noreferrer">
+          Lightweight Accordion
+        </a>
+        and created by
+        <a href="https://tcupra.com" target="_blank" rel="noopener noreferrer">
+          Trisha Cupra
+        </a>.
+      </p>
+
+      <p>
+        Released under the MIT License.
+      </p>
+    </footer>
+
+  </div>
+
+  <template id="faqTemplate">
+    <div class="card faq-card">
+      <h2></h2>
+
+      <div class="field">
+        <label>Question</label>
+        <input type="text" class="question" placeholder="Paste the FAQ question here">
+      </div>
+
+      <div class="field">
+        <label>Answer</label>
+
+        <div class="editor-toolbar">
+          <button type="button" class="toolbar-btn" data-command="bold" title="Bold" aria-label="Bold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 5h6a4 4 0 0 1 0 8H7z"></path>
+              <path d="M7 13h7a4 4 0 0 1 0 8H7z"></path>
+            </svg>
+          </button>
+          <button type="button" class="toolbar-btn" data-command="italic" title="Italic" aria-label="Italic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="4" x2="10" y2="4"></line>
+              <line x1="14" y1="20" x2="5" y2="20"></line>
+              <line x1="15" y1="4" x2="9" y2="20"></line>
+            </svg>
+          </button>
+          <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List" aria-label="Bullet List">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="4" cy="5" r="1.6" fill="currentColor" opacity="0.82"></circle>
+              <circle cx="4" cy="12" r="1.6" fill="currentColor" opacity="0.82"></circle>
+              <circle cx="4" cy="19" r="1.6" fill="currentColor" opacity="0.82"></circle>
+              <line x1="11" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+              <line x1="11" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+              <line x1="11" y1="19" x2="21" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+            </svg>
+          </button>
+          <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="Numbered List" aria-label="Numbered List">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="2.5" y="7" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">1</text>
+              <text x="2.5" y="14" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">2</text>
+              <text x="2.5" y="21" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">3</text>
+              <line x1="12" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+              <line x1="12" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+              <line x1="12" y1="19" x2="21" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="answer rich-editor" contenteditable="true"></div>
+      </div>
+
+      <div class="faq-controls">
+        <button type="button" class="secondary move-up-btn move-btn" title="Move FAQ up">↑</button>
+        <button type="button" class="secondary move-down-btn move-btn" title="Move FAQ down">↓</button>
+        <button type="button" class="secondary insert-faq-btn">Insert FAQ below</button>
+        <button type="button" class="secondary delete-faq-btn" title="Delete FAQ">Delete</button>
+      </div>
+    </div>
+  </template>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqContainer = document.getElementById('faqContainer');
+    const faqTemplate = document.getElementById('faqTemplate');
+
+    let faqCount = 0;
+
+    function renumberFaqs() {
+      document.querySelectorAll('.faq-card').forEach((card, index) => {
+        card.querySelector('h2').textContent = `FAQ ${index + 1}`;
+      });
+
+      faqCount = document.querySelectorAll('.faq-card').length;
+    }
+
+    function createFaqElement() {
+      const wrapper = document.createElement('div');
+      wrapper.appendChild(faqTemplate.content.cloneNode(true));
+
+      const faq = wrapper.firstElementChild;
+
+      return faq;
+    }
+
+    function addFaq() {
+      const faq = createFaqElement();
+      faqContainer.appendChild(faq);
+      renumberFaqs();
+    }
+
+    function insertFaqAfter(card) {
+      const faq = createFaqElement();
+      card.insertAdjacentElement('afterend', faq);
+      renumberFaqs();
+    }
+
+    function moveFaqUp(card) {
+      const previous = card.previousElementSibling;
+
+      if (!previous || !previous.classList.contains('faq-card')) {
+        return;
+      }
+
+      faqContainer.insertBefore(card, previous);
+      renumberFaqs();
+    }
+
+    function moveFaqDown(card) {
+      const next = card.nextElementSibling;
+
+      if (!next || !next.classList.contains('faq-card')) {
+        return;
+      }
+
+      faqContainer.insertBefore(next, card);
+      renumberFaqs();
+    }
+
+    function deleteFaq(card) {
+      const totalFaqs = document.querySelectorAll('.faq-card').length;
+
+      if (totalFaqs <= 1) {
+        alert('You must keep at least one FAQ block.');
+        return;
+      }
+
+      card.remove();
+      renumberFaqs();
+    }
+
+    function decodeEntities(str) {
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = str;
+      return textarea.value;
+    }
+
+    function normaliseText(value) {
+      if (!value) return '';
+
+      value = decodeEntities(value);
+
+      return value
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/[–—]/g, '-')
+        .replace(/…/g, '...')
+        .replace(/ /g, ' ');
+    }
+
+    function escapeAttribute(value) {
+      return normaliseText(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\[/g, '&#91;')
+        .replace(/\]/g, '&#93;');
+    }
+
+    function cleanEditorHtml(html) {
+      if (!html) return '';
+
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+
+      const allowedTags = new Set([
+        'P',
+        'BR',
+        'STRONG',
+        'EM',
+        'UL',
+        'OL',
+        'LI',
+        'A',
+        'BLOCKQUOTE',
+        'CODE'
+      ]);
+
+      const blockedLinkPatterns = [
+        /google\.com\/aclk/i,
+        /gclid=/i,
+        /doubleclick/i,
+        /googleadservices/i
+      ];
+
+      temp.querySelectorAll('*').forEach((el) => {
+        const tag = el.tagName;
+
+        if (!allowedTags.has(tag)) {
+          el.replaceWith(...el.childNodes);
+          return;
+        }
+
+        [...el.attributes].forEach((attr) => {
+          const allowed = tag === 'A'
+            ? ['href', 'target', 'rel']
+            : [];
+
+          if (!allowed.includes(attr.name)) {
+            el.removeAttribute(attr.name);
+          }
+        });
+
+        if (tag === 'A') {
+          const href = el.getAttribute('href');
+
+          if (!href || href.trim() === '') {
+            el.replaceWith(...el.childNodes);
+            return;
+          }
+
+          const isBlocked = blockedLinkPatterns.some((pattern) =>
+            pattern.test(href)
+          );
+
+          if (isBlocked) {
+            el.replaceWith(document.createTextNode(el.textContent || ''));
+            return;
+          }
+
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+
+      temp.querySelectorAll('b').forEach((el) => {
+        const strong = document.createElement('strong');
+        strong.innerHTML = el.innerHTML;
+        el.replaceWith(strong);
+      });
+
+      temp.querySelectorAll('i').forEach((el) => {
+        const em = document.createElement('em');
+        em.innerHTML = el.innerHTML;
+        el.replaceWith(em);
+      });
+
+      temp.querySelectorAll('p, blockquote').forEach((el) => {
+        if (!el.textContent.trim() && !el.querySelector('br')) {
+          el.remove();
+        }
+      });
+
+      temp.querySelectorAll('li').forEach((li) => {
+        const parent = li.parentElement;
+
+        if (!parent || !['UL', 'OL'].includes(parent.tagName)) {
+          const wrapper = document.createElement('ul');
+          li.parentNode.insertBefore(wrapper, li);
+          wrapper.appendChild(li);
+        }
+      });
+
+      temp.querySelectorAll('ul, ol').forEach((list) => {
+        if (!list.querySelector('li')) {
+          list.remove();
+        }
+      });
+
+      temp.querySelectorAll('p').forEach((p) => {
+        const text = p.textContent.trim().toLowerCase();
+
+        if (
+          text === 'sponsored result' ||
+          text === 'ad' ||
+          text === 'advertisement'
+        ) {
+          p.remove();
+        }
+      });
+
+      let cleaned = temp.innerHTML;
+
+      cleaned = decodeEntities(cleaned);
+
+      cleaned = cleaned
+        .replace(/<(div|span|tbody|thead|tfoot|tr|td|th|table)[^>]*>/gi, '')
+        .replace(/<\/(div|span|tbody|thead|tfoot|tr|td|th|table)>/gi, '')
+        .replace(/(<br\s*\/?>\s*){2,}/gi, '<br>')
+        .replace(/<\/a>\s*<a/gi, '</a> <a')
+        .replace(/&nbsp;/gi, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+
+      return normaliseText(cleaned);
+    }
+
+    function generateShortcode() {
+      const validationBox = document.getElementById('validationError');
+      validationBox.style.display = 'none';
+      validationBox.textContent = '';
+
+      document.querySelectorAll('.question').forEach((field) => {
+        field.classList.remove('question-error');
+      });
+      try {
+        const rows = document.querySelectorAll('.faq-card');
+        const output = [];
+
+        rows.forEach((row) => {
+          const question = normaliseText(
+            row.querySelector('.question')?.value?.trim() || ''
+          );
+
+          const answer = cleanEditorHtml(
+            row.querySelector('.answer')?.innerHTML?.trim() || ''
+          );
+
+          if (!question && !answer) return;
+
+          if (!question) {
+            validationBox.textContent = 'Each FAQ needs a question before shortcode can be generated.';
+            validationBox.style.display = 'block';
+            row.querySelector('.question')?.classList.add('question-error');
+            return;
+          }
+
+          if (!answer) {
+            validationBox.textContent = 'Each FAQ needs an answer before shortcode can be generated.';
+            validationBox.style.display = 'block';
+            return;
+          }
+
+          const attrs = [];
+
+          attrs.push(`title="${escapeAttribute(question)}"`);
+
+          if (document.getElementById('includeSchema').checked) {
+            attrs.push('schema="faq"');
+          }
+
+          if (document.getElementById('includeGroup').checked) {
+            const group = document.getElementById('groupName').value.trim() || 'faq';
+            attrs.push(`group="${escapeAttribute(group)}"`);
+          }
+
+          const headingTag = document.getElementById('headingTag').value;
+
+          if (headingTag) {
+            attrs.push(`title_tag="${headingTag}"`);
+          }
+
+          output.push(
+`[lightweight-accordion ${attrs.join(' ')}]
+${answer}
+[/lightweight-accordion]`
+          );
+        });
+
+        if (!output.length && validationBox.style.display !== 'block') {
+          validationBox.textContent = 'Add at least one FAQ question and answer before generating shortcode.';
+          validationBox.style.display = 'block';
+          return;
+        }
+
+        document.getElementById('output').value = output.join('\n\n');
+
+      } catch (error) {
+        console.error(error);
+        alert('Something went wrong generating the shortcode. Check console for details.');
+      }
+    }
+
+    document.getElementById('generateBtn').addEventListener('click', generateShortcode);
+    document.getElementById('addFaqBtn').addEventListener('click', addFaq);
+
+    faqContainer.addEventListener('click', (event) => {
+      const card = event.target.closest('.faq-card');
+
+      if (!card) return;
+
+      if (event.target.closest('.delete-faq-btn')) {
+        event.preventDefault();
+        event.stopPropagation();
+        deleteFaq(card);
+        return;
+      }
+
+      if (event.target.closest('.insert-faq-btn')) {
+        event.preventDefault();
+        event.stopPropagation();
+        insertFaqAfter(card);
+        return;
+      }
+
+      if (event.target.closest('.move-up-btn')) {
+        event.preventDefault();
+        event.stopPropagation();
+        moveFaqUp(card);
+        return;
+      }
+
+      if (event.target.closest('.move-down-btn')) {
+        event.preventDefault();
+        event.stopPropagation();
+        moveFaqDown(card);
+        return;
+      }
+    });
+
+    
+
+    let activeEditor = null;
+    let savedRange = null;
+
+    function saveEditorSelection() {
+      const selection = window.getSelection();
+
+      if (!selection || selection.rangeCount === 0) return;
+
+      const range = selection.getRangeAt(0);
+      const editor = range.commonAncestorContainer.nodeType === 1
+        ? range.commonAncestorContainer.closest?.('.answer')
+        : range.commonAncestorContainer.parentElement?.closest?.('.answer');
+
+      if (!editor) return;
+
+      activeEditor = editor;
+      savedRange = range.cloneRange();
+    }
+
+    function restoreEditorSelection() {
+      if (!savedRange) return false;
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(savedRange);
+      return true;
+    }
+
+    document.addEventListener('selectionchange', saveEditorSelection);
+
+    document.addEventListener('focusin', (event) => {
+      if (event.target.classList.contains('answer')) {
+        activeEditor = event.target;
+      }
+    });
+
+    document.addEventListener('mousedown', (event) => {
+      if (event.target.closest('.toolbar-btn')) {
+        event.preventDefault();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.toolbar-btn');
+
+      if (!button) return;
+
+      event.preventDefault();
+
+      const command = button.dataset.command;
+
+      if (!activeEditor) {
+        alert('Click inside the answer box first, then use the formatting buttons.');
+        return;
+      }
+
+      activeEditor.focus();
+      restoreEditorSelection();
+      document.execCommand(command, false, null);
+      saveEditorSelection();
+    });
+
+    document.addEventListener('paste', (event) => {
+      const editor = event.target.closest('.answer');
+
+      if (!editor) return;
+
+      const clipboard = event.clipboardData;
+
+      if (!clipboard) return;
+
+      const items = [...clipboard.items];
+      const hasImage = items.some((item) => item.type.startsWith('image/'));
+
+      if (hasImage) {
+        event.preventDefault();
+        alert('Images are not supported in FAQ answers. Paste text or links only.');
+      }
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const output = document.getElementById('output');
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+      } catch (err) {
+        output.select();
+        document.execCommand('copy');
+      }
+    });
+
+    addFaq();
+  });
+  </script>
+</body>
+</html>
