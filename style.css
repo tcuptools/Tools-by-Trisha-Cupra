@@ -1,0 +1,460 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --border: #d8dee4;
+  --text: #1f2933;
+  --muted: #6b7280;
+  --accent: #6b8fa0;
+  --accent-dark: #557786;
+  --warning-bg: #fff8e8;
+  --warning-border: #efd89f;
+  --warning-text: #72520f;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 48px 24px;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at top left, rgba(107, 143, 160, 0.08), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(85, 119, 134, 0.06), transparent 24%);
+  color: var(--text);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 72px;
+  padding-right: 72px;
+}
+
+h1 {
+  padding-top: 24px;
+  margin: 0 0 12px;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+h3 {
+  margin: 28px 0 12px;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+p {
+  margin-top: 0;
+}
+
+.intro {
+  color: var(--muted);
+  max-width: 760px;
+  margin: 0 0 32px;
+  font-size: 1.02rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.tip-card {
+  border-color: var(--warning-border);
+  background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+}
+
+.tip-label {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(239, 216, 159, 0.45);
+  color: var(--warning-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.instruction-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+}
+
+.inline-image-link {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.inline-image-link:hover {
+  color: var(--accent);
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.image-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 1100px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.modal-note {
+  padding: 20px 24px 4px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.modal-note p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-note strong {
+  color: var(--accent-dark);
+}
+
+.image-modal img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: white;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: white;
+  color: #222;
+  font-size: 0;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  display: grid;
+  place-items: center;
+  transform: none !important;
+  transition: background 0.12s ease, box-shadow 0.12s ease;
+  z-index: 2;
+}
+
+.close-modal::before {
+  content: "×";
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+.close-modal:hover {
+  background: #f3f5f7;
+  color: #111;
+  transform: none !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+.options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+.checkbox-label input {
+  margin-top: 0.25em;
+  flex-shrink: 0;
+}
+
+input[type="text"],
+select,
+textarea,
+.rich-editor {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  background: white;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.rich-editor {
+  min-height: 220px;
+  padding: 14px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.rich-editor:focus {
+  outline: 2px solid rgba(107, 143, 160, 0.25);
+  border-color: var(--accent);
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: #f7f9fb;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.editor-toolbar button {
+  user-select: none;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-toolbar button:hover {
+  background: #eef4f7;
+  color: var(--accent-dark);
+  transform: none;
+  box-shadow: none;
+}
+
+.faq-card h2 {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+}
+
+.faq-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.faq-controls button {
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  border-radius: 10px;
+}
+
+.faq-controls .move-btn {
+  min-width: 44px;
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.faq-controls .delete-faq-btn {
+  margin-left: auto;
+  background: #fff4f4;
+  color: #a94444;
+  border: 1px solid rgba(169, 68, 68, 0.15);
+}
+
+.faq-controls .delete-faq-btn:hover {
+  background: #ffeaea;
+  color: #8f2d2d;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+}
+
+button {
+  appearance: none;
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+button.secondary {
+  background: #eef2f5;
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.output {
+  min-height: 320px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92rem;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.validation-error {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #fff1f1;
+  border: 1px solid #efc7c7;
+  color: #9f2f2f;
+  border-radius: 10px;
+  font-size: 0.94rem;
+  display: none;
+}
+
+.question-error {
+  border-color: #d96b6b !important;
+  background: #fff9f9 !important;
+}
+
+.site-footer {
+  margin-top: 48px;
+  padding: 24px 0 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0 0 10px;
+}
+
+.site-footer a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .container {
+    max-width: 760px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    padding: 24px 14px;
+  }
+
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .actions {
+    padding: 16px;
+    margin-top: 24px;
+    margin-bottom: 28px;
+  }
+
+  .faq-controls .delete-faq-btn {
+    margin-left: 0;
+  }
+}
