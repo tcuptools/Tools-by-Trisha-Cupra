@@ -6,9 +6,7 @@
   <title>FAQ Shortcode Generator for Lightweight Accordion | Trisha Cupra</title>
 
   <meta name="description" content="Generate clean FAQ shortcode blocks for the Lightweight Accordion WordPress plugin, including optional FAQ schema markup and cleaned rich text formatting.">
-
   <meta name="keywords" content="FAQ shortcode generator, Lightweight Accordion, WordPress FAQ plugin, FAQ schema generator, shortcode tool, WordPress accordion FAQ">
-
   <meta name="author" content="Trisha Cupra">
 
   <meta property="og:title" content="FAQ Shortcode Generator for Lightweight Accordion">
@@ -35,12 +33,13 @@
       --muted: #6b7280;
       --accent: #6b8fa0;
       --accent-dark: #557786;
+      --warning-bg: #fff8e8;
+      --warning-border: #efd89f;
+      --warning-text: #72520f;
       --radius: 12px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       overflow-x: hidden;
@@ -51,13 +50,7 @@
         radial-gradient(circle at top left, rgba(107, 143, 160, 0.08), transparent 28%),
         radial-gradient(circle at bottom right, rgba(85, 119, 134, 0.06), transparent 24%);
       color: var(--text);
-      font-family:
-        "Montserrat",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
+      font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.5;
     }
 
@@ -67,44 +60,6 @@
       margin: 0 auto;
       padding-left: 72px;
       padding-right: 72px;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        max-width: 760px;
-        padding-left: 40px;
-        padding-right: 40px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        max-width: 100%;
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-    }
-
-    @media (max-width: 700px) {
-      body {
-        padding: 24px 14px;
-      }
-
-      .container {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-
-      .card {
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-
-      .actions {
-        padding: 16px;
-        margin-top: 24px;
-        margin-bottom: 28px;
-      }
     }
 
     h1 {
@@ -126,6 +81,8 @@
       line-height: 1.3;
     }
 
+    p { margin-top: 0; }
+
     .intro {
       color: var(--muted);
       max-width: 760px;
@@ -140,6 +97,136 @@
       padding: 28px;
       margin-bottom: 28px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .tip-card {
+      border-color: var(--warning-border);
+      background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+    }
+
+    .tip-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(239, 216, 159, 0.45);
+      color: var(--warning-text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .instruction-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+    }
+
+    .inline-image-link {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .inline-image-link:hover {
+      color: var(--accent);
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+
+    .image-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .modal-note {
+      padding: 20px 24px 4px;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .modal-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-note strong {
+      color: var(--accent-dark);
+    }
+
+    .image-modal img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: white;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      padding: 0;
+      margin: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: white;
+      color: #222;
+      font-size: 0;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      display: grid;
+      place-items: center;
+      transform: none !important;
+      transition: background 0.12s ease, box-shadow 0.12s ease;
+      z-index: 2;
+    }
+
+    .close-modal::before {
+      content: "×";
+      display: block;
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1;
+      transform: translateY(1px);
+    }
+
+    .close-modal:hover {
+      background: #f3f5f7;
+      color: #111;
+      transform: none !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
     }
 
     .options-row {
@@ -157,10 +244,7 @@
       white-space: nowrap;
     }
 
-    input[type="text"],
-    select,
-    textarea,
-    .rich-editor {
+    input[type="text"], select, textarea, .rich-editor {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -203,7 +287,7 @@
       height: 42px;
       padding: 0;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       background: white;
       color: var(--text);
       border: 1px solid rgba(0,0,0,0.08);
@@ -256,9 +340,7 @@
       color: #8f2d2d;
     }
 
-    .field {
-      margin-bottom: 16px;
-    }
+    .field { margin-bottom: 16px; }
 
     .field label {
       display: block;
@@ -354,11 +436,44 @@
     .site-footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 900px) {
+      .container {
+        max-width: 760px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .container {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .card {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .actions {
+        padding: 16px;
+        margin-top: 24px;
+        margin-bottom: 28px;
+      }
+
+      .faq-controls .delete-faq-btn {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-
     <h1>FAQ shortcode generator</h1>
 
     <p class="intro">
@@ -367,58 +482,27 @@
 
     <div class="card">
       <h2>Generate FAQ shortcode for WordPress</h2>
-
-      <p>
-        Writing large FAQ sections directly as shortcode can become repetitive, fiddly, and error-prone, especially when dealing with multiple FAQ items, grouped accordions, schema markup, and quote or encoding issues.
-      </p>
-
-      <p>
-        This utility generates properly formatted shortcode blocks for:
-      </p>
-
-      <p>
-        <a href="https://wordpress.org/plugins/lightweight-accordion/" target="_blank" rel="noopener noreferrer">
-          Lightweight Accordion for WordPress
-        </a>
-      </p>
-
+      <p>Writing large FAQ sections directly as shortcode can become repetitive, fiddly, and error-prone, especially when dealing with multiple FAQ items, grouped accordions, schema markup, and quote or encoding issues.</p>
+      <p>This utility generates properly formatted shortcode blocks for:</p>
+      <p><a href="https://wordpress.org/plugins/lightweight-accordion/" target="_blank" rel="noopener noreferrer">Lightweight Accordion for WordPress</a></p>
       <h3>How it works</h3>
-
       <ol>
         <li>Add your FAQ questions and answers</li>
         <li>Choose your shortcode options</li>
         <li>Click <strong>Generate shortcode</strong></li>
         <li>Copy the generated output</li>
-        <li>Paste it into the WordPress Classic Editor</li>
+        <li>Paste it into the WordPress Classic Editor <strong><span class="inline-image-link" id="openTextTabModal">Text</span></strong> tab</li>
       </ol>
-
-      <p class="muted">
-        The tool automatically normalises common quote and encoding issues in the background to help prevent broken shortcode output.
-      </p>
+      <p class="muted">The tool automatically normalises common quote, entity, and encoding issues in the background to help prevent broken shortcode output.</p>
     </div>
 
     <div class="card">
       <h2>Options</h2>
-
       <div class="options-row">
-
-        <label class="checkbox-label">
-          <input type="checkbox" id="includeSchema" checked>
-          Add FAQ schema
-        </label>
-
-        <label class="checkbox-label">
-          <input type="checkbox" id="includeGroup" checked>
-          Auto-close other FAQs in the same group
-        </label>
-
-        <label>
-          Group name
-          <input type="text" id="groupName" value="faq">
-        </label>
-
-        <label>
-          Heading tag
+        <label class="checkbox-label"><input type="checkbox" id="includeSchema" checked> Add FAQ schema</label>
+        <label class="checkbox-label"><input type="checkbox" id="includeGroup" checked> Auto-close other FAQs in the same group</label>
+        <label>Group name <input type="text" id="groupName" value="faq"></label>
+        <label>Heading tag
           <select id="headingTag">
             <option value="h3" selected>H3</option>
             <option value="h2">H2</option>
@@ -426,12 +510,10 @@
             <option value="">Default</option>
           </select>
         </label>
-
       </div>
     </div>
 
     <div id="faqContainer"></div>
-
     <div id="validationError" class="validation-error"></div>
 
     <div class="actions">
@@ -445,13 +527,13 @@
       <textarea id="output" class="output" readonly></textarea>
     </div>
 
-      <footer class="site-footer">
+    <footer class="site-footer">
       <p>
         Built for WordPress users who are tired of wrestling with shortcode formatting.
       </p>
 
       <p>
-        Last updated: 19 May 2026
+        Last updated: 20 May 2026
       </p>
 
       <p>
@@ -469,57 +551,44 @@
         Released under the MIT License.
       </p>
     </footer>
+  </div>
 
+  <div class="image-modal" id="textTabModal" aria-hidden="true">
+    <div class="image-modal-content" role="dialog" aria-modal="true" aria-label="WordPress Classic Editor Text tab reminder">
+      <button type="button" class="close-modal" id="closeTextTabModal" aria-label="Close image modal">×</button>
+
+      <div class="modal-note">
+        <p>
+          <strong>Important:</strong> Paste generated FAQ shortcode into the WordPress Classic Editor <strong>Text</strong> tab, not the <strong>Visual</strong> tab.
+        </p>
+
+        <p>
+          The Visual editor may automatically alter shortcode formatting and affect FAQ schema output.
+        </p>
+      </div>
+
+      <img
+        src="/images/wp-classic-editor-tabs.png"
+        alt="WordPress Classic Editor showing the Visual tab and Text tab, with a reminder to paste generated shortcodes into the Text tab."
+      >
+    </div>
   </div>
 
   <template id="faqTemplate">
     <div class="card faq-card">
       <h2></h2>
-
       <div class="field">
         <label>Question</label>
         <input type="text" class="question" placeholder="Paste the FAQ question here">
       </div>
-
       <div class="field">
         <label>Answer</label>
-
         <div class="editor-toolbar">
-          <button type="button" class="toolbar-btn" data-command="bold" title="Bold" aria-label="Bold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 5h6a4 4 0 0 1 0 8H7z"></path>
-              <path d="M7 13h7a4 4 0 0 1 0 8H7z"></path>
-            </svg>
-          </button>
-          <button type="button" class="toolbar-btn" data-command="italic" title="Italic" aria-label="Italic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="19" y1="4" x2="10" y2="4"></line>
-              <line x1="14" y1="20" x2="5" y2="20"></line>
-              <line x1="15" y1="4" x2="9" y2="20"></line>
-            </svg>
-          </button>
-          <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List" aria-label="Bullet List">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="4" cy="5" r="1.6" fill="currentColor" opacity="0.82"></circle>
-              <circle cx="4" cy="12" r="1.6" fill="currentColor" opacity="0.82"></circle>
-              <circle cx="4" cy="19" r="1.6" fill="currentColor" opacity="0.82"></circle>
-              <line x1="11" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-              <line x1="11" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-              <line x1="11" y1="19" x2="21" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-            </svg>
-          </button>
-          <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="Numbered List" aria-label="Numbered List">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2.5" y="7" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">1</text>
-              <text x="2.5" y="14" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">2</text>
-              <text x="2.5" y="21" font-size="8.5" font-weight="700" fill="currentColor" opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">3</text>
-              <line x1="12" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-              <line x1="12" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-              <line x1="12" y1="19" x2="21" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.72"></line>
-            </svg>
-          </button>
+          <button type="button" class="toolbar-btn" data-command="bold" title="Bold" aria-label="Bold"><strong>B</strong></button>
+          <button type="button" class="toolbar-btn" data-command="italic" title="Italic" aria-label="Italic"><em>I</em></button>
+          <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="Bullet list" aria-label="Bullet list">•</button>
+          <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="Numbered list" aria-label="Numbered list">123</button>
         </div>
-
         <div class="answer rich-editor" contenteditable="true"></div>
       </div>
 
@@ -533,275 +602,227 @@
   </template>
 
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqContainer = document.getElementById('faqContainer');
-    const faqTemplate = document.getElementById('faqTemplate');
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqContainer = document.getElementById('faqContainer');
+      const faqTemplate = document.getElementById('faqTemplate');
+      let faqCount = 0;
 
-    let faqCount = 0;
-
-    function renumberFaqs() {
-      document.querySelectorAll('.faq-card').forEach((card, index) => {
-        card.querySelector('h2').textContent = `FAQ ${index + 1}`;
-      });
-
-      faqCount = document.querySelectorAll('.faq-card').length;
-    }
-
-    function createFaqElement() {
-      const wrapper = document.createElement('div');
-      wrapper.appendChild(faqTemplate.content.cloneNode(true));
-
-      const faq = wrapper.firstElementChild;
-
-      return faq;
-    }
-
-    function addFaq() {
-      const faq = createFaqElement();
-      faqContainer.appendChild(faq);
-      renumberFaqs();
-    }
-
-    function insertFaqAfter(card) {
-      const faq = createFaqElement();
-      card.insertAdjacentElement('afterend', faq);
-      renumberFaqs();
-    }
-
-    function moveFaqUp(card) {
-      const previous = card.previousElementSibling;
-
-      if (!previous || !previous.classList.contains('faq-card')) {
-        return;
+      function decodeEntities(str) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = str;
+        return textarea.value;
       }
 
-      faqContainer.insertBefore(card, previous);
-      renumberFaqs();
-    }
+      function normaliseText(value) {
+        if (!value) return '';
 
-    function moveFaqDown(card) {
-      const next = card.nextElementSibling;
+        value = decodeEntities(value);
 
-      if (!next || !next.classList.contains('faq-card')) {
-        return;
+        return value
+          .replace(/[‘’]/g, "'")
+          .replace(/[“”]/g, '"')
+          .replace(/[–—]/g, '-')
+          .replace(/…/g, '...')
+          .replace(/\u00A0/g, ' ');
       }
 
-      faqContainer.insertBefore(next, card);
-      renumberFaqs();
-    }
-
-    function deleteFaq(card) {
-      const totalFaqs = document.querySelectorAll('.faq-card').length;
-
-      if (totalFaqs <= 1) {
-        alert('You must keep at least one FAQ block.');
-        return;
+      function escapeAttribute(value) {
+        return normaliseText(value)
+          .replace(/&/g, '&amp;')
+          .replace(/"/g, '&quot;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/\[/g, '&#91;')
+          .replace(/\]/g, '&#93;');
       }
 
-      card.remove();
-      renumberFaqs();
-    }
+      function unwrapElement(el) {
+        const parent = el.parentNode;
+        while (el.firstChild) parent.insertBefore(el.firstChild, el);
+        parent.removeChild(el);
+      }
 
-    function decodeEntities(str) {
-      const textarea = document.createElement('textarea');
-      textarea.innerHTML = str;
-      return textarea.value;
-    }
+      function cleanEditorHtml(html) {
+        if (!html) return '';
 
-    function normaliseText(value) {
-      if (!value) return '';
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
 
-      value = decodeEntities(value);
+        temp.querySelectorAll('img').forEach((img) => img.remove());
 
-      return value
-        .replace(/[‘’]/g, "'")
-        .replace(/[“”]/g, '"')
-        .replace(/[–—]/g, '-')
-        .replace(/…/g, '...')
-        .replace(/ /g, ' ');
-    }
+        temp.querySelectorAll('b').forEach((el) => {
+          const strong = document.createElement('strong');
+          strong.innerHTML = el.innerHTML;
+          el.replaceWith(strong);
+        });
 
-    function escapeAttribute(value) {
-      return normaliseText(value)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/\[/g, '&#91;')
-        .replace(/\]/g, '&#93;');
-    }
+        temp.querySelectorAll('i').forEach((el) => {
+          const em = document.createElement('em');
+          em.innerHTML = el.innerHTML;
+          el.replaceWith(em);
+        });
 
-    function cleanEditorHtml(html) {
-      if (!html) return '';
+        const allowedTags = new Set(['P', 'BR', 'STRONG', 'EM', 'UL', 'OL', 'LI', 'A', 'BLOCKQUOTE', 'CODE']);
+        const blockedLinkPatterns = [/google\.com\/aclk/i, /gclid=/i, /doubleclick/i, /googleadservices/i];
 
-      const temp = document.createElement('div');
-      temp.innerHTML = html;
+        Array.from(temp.querySelectorAll('*')).forEach((el) => {
+          const tag = el.tagName;
 
-      const allowedTags = new Set([
-        'P',
-        'BR',
-        'STRONG',
-        'EM',
-        'UL',
-        'OL',
-        'LI',
-        'A',
-        'BLOCKQUOTE',
-        'CODE'
-      ]);
+          if (!allowedTags.has(tag)) {
+            unwrapElement(el);
+            return;
+          }
 
-      const blockedLinkPatterns = [
-        /google\.com\/aclk/i,
-        /gclid=/i,
-        /doubleclick/i,
-        /googleadservices/i
-      ];
+          Array.from(el.attributes).forEach((attr) => {
+            const allowed = tag === 'A' ? ['href', 'target', 'rel'] : [];
+            if (!allowed.includes(attr.name)) el.removeAttribute(attr.name);
+          });
 
-      temp.querySelectorAll('*').forEach((el) => {
-        const tag = el.tagName;
+          if (tag === 'A') {
+            const href = el.getAttribute('href') || '';
+            const blocked = blockedLinkPatterns.some((pattern) => pattern.test(href));
 
-        if (!allowedTags.has(tag)) {
-          el.replaceWith(...el.childNodes);
-          return;
-        }
+            if (!href.trim() || blocked) {
+              el.replaceWith(document.createTextNode(el.textContent || ''));
+              return;
+            }
 
-        [...el.attributes].forEach((attr) => {
-          const allowed = tag === 'A'
-            ? ['href', 'target', 'rel']
-            : [];
-
-          if (!allowed.includes(attr.name)) {
-            el.removeAttribute(attr.name);
+            el.setAttribute('target', '_blank');
+            el.setAttribute('rel', 'noopener noreferrer');
           }
         });
 
-        if (tag === 'A') {
-          const href = el.getAttribute('href');
-
-          if (!href || href.trim() === '') {
-            el.replaceWith(...el.childNodes);
-            return;
+        Array.from(temp.querySelectorAll('li')).forEach((li) => {
+          const parent = li.parentElement;
+          if (!parent || !['UL', 'OL'].includes(parent.tagName)) {
+            const wrapper = document.createElement('ul');
+            li.parentNode.insertBefore(wrapper, li);
+            wrapper.appendChild(li);
           }
+        });
 
-          const isBlocked = blockedLinkPatterns.some((pattern) =>
-            pattern.test(href)
-          );
+        Array.from(temp.querySelectorAll('p, blockquote')).forEach((el) => {
+          const text = el.textContent.trim().toLowerCase();
+          if (!text && !el.querySelector('br')) el.remove();
+          if (text === 'sponsored result' || text === 'ad' || text === 'advertisement') el.remove();
+        });
 
-          if (isBlocked) {
-            el.replaceWith(document.createTextNode(el.textContent || ''));
-            return;
-          }
+        Array.from(temp.querySelectorAll('ul, ol')).forEach((list) => {
+          if (!list.querySelector('li')) list.remove();
+        });
 
-          el.setAttribute('target', '_blank');
-          el.setAttribute('rel', 'noopener noreferrer');
+        let cleaned = temp.innerHTML;
+
+        cleaned = decodeEntities(cleaned);
+
+        return normaliseText(cleaned)
+          .replace(/<\/a>\s*<a/gi, '</a> <a')
+          .replace(/(<br\s*\/?>\s*){2,}/gi, '<br>')
+          .replace(/&nbsp;/gi, ' ')
+          .replace(/\s{2,}/g, ' ')
+          .trim();
+      }
+
+      function renumberFaqs() {
+        document.querySelectorAll('.faq-card').forEach((card, index) => {
+          card.querySelector('h2').textContent = `FAQ ${index + 1}`;
+        });
+
+        faqCount = document.querySelectorAll('.faq-card').length;
+      }
+
+      function createFaqElement() {
+        const wrapper = document.createElement('div');
+        wrapper.appendChild(faqTemplate.content.cloneNode(true));
+        return wrapper.firstElementChild;
+      }
+
+      function addFaq() {
+        const faq = createFaqElement();
+        faqContainer.appendChild(faq);
+        renumberFaqs();
+      }
+
+      function insertFaqAfter(card) {
+        const faq = createFaqElement();
+        card.insertAdjacentElement('afterend', faq);
+        renumberFaqs();
+      }
+
+      function moveFaqUp(card) {
+        const previous = card.previousElementSibling;
+
+        if (!previous || !previous.classList.contains('faq-card')) {
+          return;
         }
-      });
 
-      temp.querySelectorAll('b').forEach((el) => {
-        const strong = document.createElement('strong');
-        strong.innerHTML = el.innerHTML;
-        el.replaceWith(strong);
-      });
+        faqContainer.insertBefore(card, previous);
+        renumberFaqs();
+      }
 
-      temp.querySelectorAll('i').forEach((el) => {
-        const em = document.createElement('em');
-        em.innerHTML = el.innerHTML;
-        el.replaceWith(em);
-      });
+      function moveFaqDown(card) {
+        const next = card.nextElementSibling;
 
-      temp.querySelectorAll('p, blockquote').forEach((el) => {
-        if (!el.textContent.trim() && !el.querySelector('br')) {
-          el.remove();
+        if (!next || !next.classList.contains('faq-card')) {
+          return;
         }
-      });
 
-      temp.querySelectorAll('li').forEach((li) => {
-        const parent = li.parentElement;
+        faqContainer.insertBefore(next, card);
+        renumberFaqs();
+      }
 
-        if (!parent || !['UL', 'OL'].includes(parent.tagName)) {
-          const wrapper = document.createElement('ul');
-          li.parentNode.insertBefore(wrapper, li);
-          wrapper.appendChild(li);
+      function deleteFaq(card) {
+        const totalFaqs = document.querySelectorAll('.faq-card').length;
+
+        if (totalFaqs <= 1) {
+          alert('You must keep at least one FAQ block.');
+          return;
         }
-      });
 
-      temp.querySelectorAll('ul, ol').forEach((list) => {
-        if (!list.querySelector('li')) {
-          list.remove();
-        }
-      });
+        card.remove();
+        renumberFaqs();
+      }
 
-      temp.querySelectorAll('p').forEach((p) => {
-        const text = p.textContent.trim().toLowerCase();
+      function showValidation(message, row) {
+        const validationBox = document.getElementById('validationError');
+        validationBox.textContent = message;
+        validationBox.style.display = 'block';
+        if (row) row.querySelector('.question')?.classList.add('question-error');
+      }
 
-        if (
-          text === 'sponsored result' ||
-          text === 'ad' ||
-          text === 'advertisement'
-        ) {
-          p.remove();
-        }
-      });
+      function clearValidation() {
+        const validationBox = document.getElementById('validationError');
+        validationBox.textContent = '';
+        validationBox.style.display = 'none';
+        document.querySelectorAll('.question').forEach((field) => field.classList.remove('question-error'));
+      }
 
-      let cleaned = temp.innerHTML;
-
-      cleaned = decodeEntities(cleaned);
-
-      cleaned = cleaned
-        .replace(/<(div|span|tbody|thead|tfoot|tr|td|th|table)[^>]*>/gi, '')
-        .replace(/<\/(div|span|tbody|thead|tfoot|tr|td|th|table)>/gi, '')
-        .replace(/(<br\s*\/?>\s*){2,}/gi, '<br>')
-        .replace(/<\/a>\s*<a/gi, '</a> <a')
-        .replace(/&nbsp;/gi, ' ')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
-
-      return normaliseText(cleaned);
-    }
-
-    function generateShortcode() {
-      const validationBox = document.getElementById('validationError');
-      validationBox.style.display = 'none';
-      validationBox.textContent = '';
-
-      document.querySelectorAll('.question').forEach((field) => {
-        field.classList.remove('question-error');
-      });
-      try {
-        const rows = document.querySelectorAll('.faq-card');
+      function generateShortcode() {
+        clearValidation();
         const output = [];
+        let hasValidationError = false;
 
-        rows.forEach((row) => {
-          const question = normaliseText(
-            row.querySelector('.question')?.value?.trim() || ''
-          );
-
-          const answer = cleanEditorHtml(
-            row.querySelector('.answer')?.innerHTML?.trim() || ''
-          );
+        document.querySelectorAll('.faq-card').forEach((row) => {
+          const question = normaliseText(row.querySelector('.question')?.value?.trim() || '');
+          const answer = cleanEditorHtml(row.querySelector('.answer')?.innerHTML?.trim() || '');
 
           if (!question && !answer) return;
 
           if (!question) {
-            validationBox.textContent = 'Each FAQ needs a question before shortcode can be generated.';
-            validationBox.style.display = 'block';
-            row.querySelector('.question')?.classList.add('question-error');
+            showValidation('Each FAQ needs a question before shortcode can be generated.', row);
+            hasValidationError = true;
             return;
           }
 
           if (!answer) {
-            validationBox.textContent = 'Each FAQ needs an answer before shortcode can be generated.';
-            validationBox.style.display = 'block';
+            showValidation('Each FAQ needs an answer before shortcode can be generated.', row);
+            hasValidationError = true;
             return;
           }
 
-          const attrs = [];
+          const attrs = [`title="${escapeAttribute(question)}"`];
 
-          attrs.push(`title="${escapeAttribute(question)}"`);
-
-          if (document.getElementById('includeSchema').checked) {
-            attrs.push('schema="faq"');
-          }
+          if (document.getElementById('includeSchema').checked) attrs.push('schema="faq"');
 
           if (document.getElementById('includeGroup').checked) {
             const group = document.getElementById('groupName').value.trim() || 'faq';
@@ -809,164 +830,119 @@
           }
 
           const headingTag = document.getElementById('headingTag').value;
+          if (headingTag) attrs.push(`title_tag="${headingTag}"`);
 
-          if (headingTag) {
-            attrs.push(`title_tag="${headingTag}"`);
-          }
-
-          output.push(
-`[lightweight-accordion ${attrs.join(' ')}]
-${answer}
-[/lightweight-accordion]`
-          );
+          output.push(`[lightweight-accordion ${attrs.join(' ')}]\n${answer}\n[/lightweight-accordion]`);
         });
 
-        if (!output.length && validationBox.style.display !== 'block') {
-          validationBox.textContent = 'Add at least one FAQ question and answer before generating shortcode.';
-          validationBox.style.display = 'block';
+        if (hasValidationError) return;
+
+        if (!output.length) {
+          showValidation('Add at least one FAQ question and answer before generating shortcode.');
           return;
         }
 
         document.getElementById('output').value = output.join('\n\n');
-
-      } catch (error) {
-        console.error(error);
-        alert('Something went wrong generating the shortcode. Check console for details.');
       }
-    }
 
-    document.getElementById('generateBtn').addEventListener('click', generateShortcode);
-    document.getElementById('addFaqBtn').addEventListener('click', addFaq);
+      document.getElementById('generateBtn').addEventListener('click', generateShortcode);
+      document.getElementById('addFaqBtn').addEventListener('click', addFaq);
 
-    faqContainer.addEventListener('click', (event) => {
-      const card = event.target.closest('.faq-card');
+      faqContainer.addEventListener('click', (event) => {
+        const card = event.target.closest('.faq-card');
 
-      if (!card) return;
+        if (!card) return;
 
-      if (event.target.closest('.delete-faq-btn')) {
+        if (event.target.closest('.delete-faq-btn')) {
+          event.preventDefault();
+          event.stopPropagation();
+          deleteFaq(card);
+          return;
+        }
+
+        if (event.target.closest('.insert-faq-btn')) {
+          event.preventDefault();
+          event.stopPropagation();
+          insertFaqAfter(card);
+          return;
+        }
+
+        if (event.target.closest('.move-up-btn')) {
+          event.preventDefault();
+          event.stopPropagation();
+          moveFaqUp(card);
+          return;
+        }
+
+        if (event.target.closest('.move-down-btn')) {
+          event.preventDefault();
+          event.stopPropagation();
+          moveFaqDown(card);
+          return;
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('.toolbar-btn');
+        if (!button) return;
         event.preventDefault();
-        event.stopPropagation();
-        deleteFaq(card);
-        return;
+        document.execCommand(button.dataset.command, false, null);
+      });
+
+      document.addEventListener('paste', (event) => {
+        const editor = event.target.closest('.answer');
+        if (!editor) return;
+
+        const clipboard = event.clipboardData;
+        if (!clipboard) return;
+
+        const hasImage = Array.from(clipboard.items).some((item) => item.type.startsWith('image/'));
+        if (hasImage) {
+          event.preventDefault();
+          alert('Images are not supported in FAQ answers. Paste text or links only.');
+        }
+      });
+
+      document.getElementById('copyBtn').addEventListener('click', async () => {
+        const output = document.getElementById('output');
+        try {
+          await navigator.clipboard.writeText(output.value);
+        } catch (err) {
+          output.select();
+          document.execCommand('copy');
+        }
+      });
+
+      const textTabLink = document.getElementById('openTextTabModal');
+      const textTabModal = document.getElementById('textTabModal');
+      const closeTextTabModal = document.getElementById('closeTextTabModal');
+
+      if (textTabLink && textTabModal) {
+        textTabLink.addEventListener('click', () => {
+          textTabModal.classList.add('active');
+        });
       }
 
-      if (event.target.closest('.insert-faq-btn')) {
-        event.preventDefault();
-        event.stopPropagation();
-        insertFaqAfter(card);
-        return;
+      if (closeTextTabModal && textTabModal) {
+        closeTextTabModal.addEventListener('click', () => {
+          textTabModal.classList.remove('active');
+        });
+
+        textTabModal.addEventListener('click', (event) => {
+          if (event.target === textTabModal) {
+            textTabModal.classList.remove('active');
+          }
+        });
       }
 
-      if (event.target.closest('.move-up-btn')) {
-        event.preventDefault();
-        event.stopPropagation();
-        moveFaqUp(card);
-        return;
-      }
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          textTabModal?.classList.remove('active');
+        }
+      });
 
-      if (event.target.closest('.move-down-btn')) {
-        event.preventDefault();
-        event.stopPropagation();
-        moveFaqDown(card);
-        return;
-      }
+      addFaq();
     });
-
-    
-
-    let activeEditor = null;
-    let savedRange = null;
-
-    function saveEditorSelection() {
-      const selection = window.getSelection();
-
-      if (!selection || selection.rangeCount === 0) return;
-
-      const range = selection.getRangeAt(0);
-      const editor = range.commonAncestorContainer.nodeType === 1
-        ? range.commonAncestorContainer.closest?.('.answer')
-        : range.commonAncestorContainer.parentElement?.closest?.('.answer');
-
-      if (!editor) return;
-
-      activeEditor = editor;
-      savedRange = range.cloneRange();
-    }
-
-    function restoreEditorSelection() {
-      if (!savedRange) return false;
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(savedRange);
-      return true;
-    }
-
-    document.addEventListener('selectionchange', saveEditorSelection);
-
-    document.addEventListener('focusin', (event) => {
-      if (event.target.classList.contains('answer')) {
-        activeEditor = event.target;
-      }
-    });
-
-    document.addEventListener('mousedown', (event) => {
-      if (event.target.closest('.toolbar-btn')) {
-        event.preventDefault();
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      const button = event.target.closest('.toolbar-btn');
-
-      if (!button) return;
-
-      event.preventDefault();
-
-      const command = button.dataset.command;
-
-      if (!activeEditor) {
-        alert('Click inside the answer box first, then use the formatting buttons.');
-        return;
-      }
-
-      activeEditor.focus();
-      restoreEditorSelection();
-      document.execCommand(command, false, null);
-      saveEditorSelection();
-    });
-
-    document.addEventListener('paste', (event) => {
-      const editor = event.target.closest('.answer');
-
-      if (!editor) return;
-
-      const clipboard = event.clipboardData;
-
-      if (!clipboard) return;
-
-      const items = [...clipboard.items];
-      const hasImage = items.some((item) => item.type.startsWith('image/'));
-
-      if (hasImage) {
-        event.preventDefault();
-        alert('Images are not supported in FAQ answers. Paste text or links only.');
-      }
-    });
-
-    document.getElementById('copyBtn').addEventListener('click', async () => {
-      const output = document.getElementById('output');
-
-      try {
-        await navigator.clipboard.writeText(output.value);
-      } catch (err) {
-        output.select();
-        document.execCommand('copy');
-      }
-    });
-
-    addFaq();
-  });
   </script>
 </body>
 </html>
